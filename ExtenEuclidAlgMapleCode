@@ -1,0 +1,30 @@
+ExtendedEuclidean := proc(a, b)
+local q, r, r1, r2, s, s1, s2, t, t1, t2, Reversed, rat;
+ if b < a then
+   r2 := a;
+   r1 := b;
+   Reversed := false;
+ else r2 := b;
+  r1 := a;
+  Reversed := true;
+ end if;
+ s2 := 1;
+ s1 := 0;
+ t2 := 0;
+ t1 := 1;
+ do q := trunc(r2/r1);
+   r := r2 mod r1;
+   s := s2 - q*s1;
+   t := t2 - q*t1;
+   r2 := r1;
+   r1 := r;
+   t2 := t1;
+   t1 := t;
+   s2 := s1;
+   s1 := s;
+ until r = 0;
+ if Reversed = true then
+  print(R = r2, S = t2, T = s2);
+ else print(R = r2, S = s2, T = t2);
+ end if;
+ end proc
